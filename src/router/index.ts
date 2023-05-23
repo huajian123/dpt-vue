@@ -1,23 +1,22 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory,type Router, type RouteRecordRaw } from "vue-router";
+import type { App } from "vue";
+import { basicRoutes } from "@/router/routes";
 
-const router = createRouter({
+/**
+ * @description: 创建路由
+ * @param {string} base
+ * @returns {Router}
+ */
+export const router:Router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    }
-  ]
+  routes: basicRoutes as unknown as RouteRecordRaw[],
+  strict: true, //默认情况下，所有路由是不区分大小写的，并且能匹配带有或不带有尾部斜线的路由。这里采用严格模式
+  scrollBehavior: () => ({ left: 0, top: 0 })
 })
 
-export default router
+/**
+ * @description: 路由配置汇总方法
+ */
+export function setupRouter(app: App<Element>):void {
+  app.use(router)
+}

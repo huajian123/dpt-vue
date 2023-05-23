@@ -1,14 +1,26 @@
-import './assets/main.css'
-
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
 import App from './App.vue'
-import router from './router'
+import { setupRouter } from "./router";
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.css';
 
-const app = createApp(App)
+import '@/styles/index.less'
+import { setupStore } from "@/stores";
 
-app.use(createPinia())
-app.use(router)
+function bootstrap() :void{
+  const app = createApp(App)
 
-app.mount('#app')
+  // 初始化store
+  setupStore(app);
+
+  app.use(Antd);
+
+  // 初始化router
+  setupRouter(app)
+
+  app.mount('#app')
+}
+
+bootstrap();
