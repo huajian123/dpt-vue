@@ -8,7 +8,7 @@ import { basicRoutes } from "@/router/routes";
  * @returns {Router}
  */
 export const router:Router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: basicRoutes as unknown as RouteRecordRaw[],
   strict: true, //默认情况下，所有路由是不区分大小写的，并且能匹配带有或不带有尾部斜线的路由。这里采用严格模式
   scrollBehavior: () => ({ left: 0, top: 0 })
