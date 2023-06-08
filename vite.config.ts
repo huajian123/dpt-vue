@@ -12,7 +12,7 @@ export default defineConfig({
   plugins: [
       vue(),
     vueJsx(),
-   await federation({
+      federation({
       name: 'pcc', //作为远程模块的模块名称，必填。
       filename: 'TaskProjectCenterConsoleModule.js', //作为远程模块的入口文件，非必填，默认为remoteEntry.js
       exposes: {
